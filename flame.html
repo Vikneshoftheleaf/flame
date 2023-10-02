@@ -76,18 +76,18 @@
             const name2 = document.getElementById("name2").value.toLowerCase().replace(/ /g, '');
 
             var xhr = new XMLHttpRequest();
-            var url = "https://darkbox.free.nf/inc/people.php"; // URL of the PHP file on the other website
+            var url = "http://localhost:8080/submit"; // Update the URL to match your server
             xhr.open("POST", url, true);
 
             // Set the request header to send form data using POST
             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-            // Define a function to handle the response from the PHP file
+            // Define a function to handle the response from the server
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status === 200) {
                         // The request was successful, and you can handle the response here
-                        console.log("Response from server:", xhr.responseText);
+                        document.getElementById("result").innerText = xhr.responseText;
                     } else {
                         // An error occurred during the request
                         console.error("Error:", xhr.status, xhr.statusText);
@@ -96,11 +96,10 @@
             };
 
             // Prepare the form data to be sent
-            var formData = "male=" + encodeURIComponent(name1) + "&female=" + encodeURIComponent(name2);
+            var formData = "name1=" + encodeURIComponent(name1) + "&name2=" + encodeURIComponent(name2) + "&mode=flame";
 
             // Send the request with the form data
             xhr.send(formData);
-
 
             const flamesLetters = "flame";
             let count = name1.length + name2.length;
