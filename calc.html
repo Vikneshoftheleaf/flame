@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/067fc88846.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/heart.jpg" type="image/x-icon">
+
 </head>
 
 <body class="lg:h-screen bg-orange-100">
@@ -18,7 +21,7 @@
         <div class="col p-8 rounded-[8px] bg-white flex flex-col gap-4 justify-center items-center">
 
 
-            <div class="text-4xl lg:text-5xl font-black text-red-950">Love Percentage Calculator!</div>
+            <div class="text-4xl lg:text-5xl font-black text-red-950">Love Percentage Calculator! <i class="fa-solid fa-heart text-red-500"></i></div>
 
             <form id="docalc" class="flex flex-col gap-2 w-full">
                 <label for="name1" class="text-md font-semibold">Persone 1</label>
@@ -27,25 +30,25 @@
                 <label for="name2" class="text-md font-semibold">Person 2 </label>
                 <input type="text" id="name2" class="p-4 bg-orange-200" placeholder="Eg:Clara">
 
-                <button class="bg-orange-400 mt-2 rounded-[8px] font-bold text-2xl text-red-50 py-4 px-4">Calculate
-                    </button><br><br>
+                <button class="bg-orange-400 mt-2 rounded-[8px] font-bold text-2xl text-red-50 py-4 px-4">Calculate <i class="fa-solid fa-calculator"></i>
+                </button><br><br>
 
             </form>
             <div id="result" class="hidden absolute h-screen w-screen bg-white/20 top-0 left-0">
                 <div class="h-full w-full flex justify-center items-center">
                     <div class="h-[300px] w-[300px] lg:h-[300px] lg:w-[300px] z-10 rounded-[8px] bg-white ">
-                        <button id="close" class="text-red-900 bg-red-500 p-2">Close</button>
-                        <div class="flex flex-col p-4 h-[60%] items-center justify-center">
-                            <span id="words" class="text-4xl font-black uppercase"></span> 
-                            <span id="relbar" class="text-2xl font-semibold"></span> 
-                            <span id="err" class="text-2xl font-semibold"></span> 
+                        <button id="close" class="text-red-900 p-2 float-right"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                        <div class="flex flex-col p-4 h-[60%] items-center justify-center w-full">
+                            <span id="words" class="text-8xl font-black uppercase"></span>
+                            <span id="relbar" class="text-2xl font-semibold"></span>
+                            <span id="err" class="text-2xl font-semibold"></span>
                         </div>
                     </div>
-                       
+
                 </div>
             </div>
         </div>
-        
+
 
 
     </div>
@@ -65,7 +68,7 @@
         function calculateLovePercentage() {
 
             const name1 = document.getElementById("name1").value.toLowerCase().replace(/ /g, '');
-        const name2 = document.getElementById("name2").value.toLowerCase().replace(/ /g, '');
+            const name2 = document.getElementById("name2").value.toLowerCase().replace(/ /g, '');
 
             const alphabet = 'abcdefghijklmnopqrstuvwxyz';
             let totalLetters = 0;
@@ -93,13 +96,13 @@
 
             // Calculate love percentage
             const lovePercentage = (matchingLetters / totalLetters) * 100;
-            const result = `Love Percentage: ${lovePercentage.toFixed(2)}%`;
+            const result = `${lovePercentage}%`;
 
             popup.classList.toggle("hidden")
-            relbar.textContent = result
-            
+            words.textContent = result
+
         }
-        popClose.addEventListener("click",()=>{
+        popClose.addEventListener("click", () => {
             popup.classList.toggle("hidden")
         })
 
