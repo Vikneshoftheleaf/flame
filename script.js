@@ -25,34 +25,6 @@ app.get('/flame',(req,res)=>{
 })
 
 
-app.post('/submit', (req, res) => {
-    const formData = {
-        person1: req.body.name1,
-        person2: req.body.name2,
-        mode: req.body.mode
-    };
-
-    // Load existing data from the JSON file
-    let data = [];
-    try {
-        const existingData = fs.readFileSync('data.json', 'utf-8');
-        data = JSON.parse(existingData);
-    } catch (error) {
-        console.error('Error reading data from JSON file:', error);
-    }
-
-    // Add the new form data
-    data.push(formData);
-
-    // Save the updated data to the JSON file
-    fs.writeFile('data.json', JSON.stringify(data, null, 2), (error) => {
-        if (error) {
-            console.error('Error writing data to JSON file:', error);
-            res.status(500).send('Error saving data');
-        } 
-    });
-});
-
 app.listen(port,()=>{
     console.log(`Listeneing at ${port}`)
 })
